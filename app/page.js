@@ -67,8 +67,8 @@ export default function Page() {
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
             Build beautiful, tailored CVs in seconds. Whether you're in tech or
-            another field, we’ve got you covered. Start now and make a lasting
-            impression!
+            another field, we&apos;ve got you covered. Start now and make a
+            lasting impression!
           </p>
 
           {session?.user?.email ? (
