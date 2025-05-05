@@ -7,20 +7,19 @@ import { Edit, FileText } from "lucide-react";
 import { toast } from "react-toastify";
 
 export default function Page() {
-  const { data: session, status } = useSession(); 
+  const { data: session, status } = useSession();
   const [welcomeMessage, setWelcomeMessage] = useState("Welcome to SnapCV!");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (status === "loading") {
-      return; 
+      return;
     }
 
-  
     if (!session?.user?.email) {
       setWelcomeMessage("Please Log in");
       toast.error("Please Log in");
-      setLoading(false); 
+      setLoading(false);
       return;
     }
     if (session) {
