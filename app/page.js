@@ -1,102 +1,102 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { Edit, FileText } from "lucide-react";
+import { toast } from "react-toastify";
+
+export default function Page() {
+  const { data: session, status } = useSession(); 
+  const [welcomeMessage, setWelcomeMessage] = useState("Welcome to SnapCV!");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === "loading") {
+      return; 
+    }
+
+  
+    if (!session?.user?.email) {
+      setWelcomeMessage("Please Log in");
+      toast.error("Please Log in");
+      setLoading(false); 
+      return;
+    }
+    if (session) {
+      setWelcomeMessage(
+        `Welcome to SnapCV, ${session.user?.name || "Please Log in"}!`
+      );
+    }
+    setLoading(false);
+  }, [session, status]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-tr from-indigo-800 via-blue-700 to-purple-700">
+        <div className="text-lg text-gray-100 animate-pulse">
+          Fetching your personalized content...
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-tr from-indigo-800 via-blue-700 to-purple-700 flex flex-col">
+      <main className="flex-grow p-6 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-lg p-8 sm:p-12 w-full max-w-3xl text-center transform transition-all duration-300 ease-in-out">
+          <div className="mb-8 flex justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-16 h-16 text-indigo-600 transform transition-all duration-300 ease-in-out hover:text-teal-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
+            {welcomeMessage}
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            Build beautiful, tailored CVs in seconds. Whether you're in tech or
+            another field, we’ve got you covered. Start now and make a lasting
+            impression!
+          </p>
+
+          {session?.user?.email ? (
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <Link
+                href="/TechForm"
+                className="bg-gradient-to-r from-teal-400 to-indigo-600 hover:from-teal-500 hover:to-indigo-600 text-white font-semibold px-6 py-3 rounded-full shadow-md transform transition-all duration-200 hover:scale-105"
+              >
+                <Edit className="w-4 h-4 mr-2" />
+                Create Your Tech CV
+              </Link>
+              <Link
+                href="/GeneralForm"
+                className="border-2 border-gradient-to-r from-teal-400 to-indigo-600 hover:bg-indigo-50 text-indigo-600 hover:text-indigo-900 font-semibold px-6 py-3 rounded-full transform transition-all duration-200 hover:scale-105"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Create a General CV
+              </Link>
+            </div>
+          ) : null}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="bg-indigo-900 text-white py-6 mt-auto">
+        <div className="text-center text-sm">
+          &copy; {new Date().getFullYear()} SnapCV. All rights reserved. Built
+          with ❤️ by SnapCV Team
+        </div>
       </footer>
     </div>
   );
