@@ -31,7 +31,6 @@ export default function DownloadCV() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-
     const templateFromQuery = searchParams.get("template") || "TemplateOne";
     const typeFromQuery = searchParams.get("type") || "General";
 
@@ -95,11 +94,11 @@ export default function DownloadCV() {
 
         if (!res.ok) {
           toast.error(data.message || "Failed to fetch CV data");
-          throw new Error(`Failed to fetch: ${res.statusText}`);
+          return;
         }
 
         setCvData(data);
-        toast.success(data.message || "CV data fetched successfully!");
+        toast.success("CV data fetched successfully!");
       } catch (error) {
         console.error("Error fetching CV:", error);
         toast.error("Error fetching CV data.");
@@ -119,9 +118,7 @@ export default function DownloadCV() {
     }
 
     if (typeof window.html2pdf === "undefined") {
-      toast.warning(
-        "PDF library is still loading. Please try again in a few seconds."
-      );
+      toast.warning("PDF library is still loading. Please try again later.");
       return;
     }
 
@@ -137,7 +134,7 @@ export default function DownloadCV() {
             scale: 7,
             useCORS: true,
             logging: false,
-            backgroundColor: null, 
+            backgroundColor: null,
             allowTaint: true,
             dpi: 500,
           },
@@ -204,9 +201,7 @@ export default function DownloadCV() {
               value={cvType}
               onChange={(e) => {
                 setCvType(e.target.value);
-                setTemplate(
-                  e.target.value === "Tech" ? "TemplateOne" : "TemplateOne"
-                );
+                setTemplate("TemplateOne");
               }}
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
@@ -224,15 +219,11 @@ export default function DownloadCV() {
               onChange={(e) => setTemplate(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              {templateOptions?.length > 0 ? (
-                templateOptions.map((tpl) => (
-                  <option key={tpl} value={tpl}>
-                    {tpl.replace("Template", "Template ")}
-                  </option>
-                ))
-              ) : (
-                <option disabled>No templates available</option>
-              )}
+              {templateOptions.map((tpl) => (
+                <option key={tpl} value={tpl}>
+                  {tpl.replace("Template", "Template ")}
+                </option>
+              ))}
             </select>
           </div>
         </div>
