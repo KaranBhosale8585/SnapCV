@@ -77,10 +77,13 @@ export default function DownloadCV() {
     });
   };
 
+  // UseEffect for loading pdf library
   useEffect(() => {
-    loadPdfLibrary().catch(() => {
-      toast.error("Failed to load html2pdf.js");
-    });
+    if (typeof window !== "undefined") {
+      loadPdfLibrary().catch(() => {
+        toast.error("Failed to load html2pdf.js");
+      });
+    }
   }, []);
 
   // Fetch CV data based on the user session
