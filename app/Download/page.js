@@ -30,6 +30,7 @@ export default function DownloadCV() {
 
   const searchParams = useSearchParams();
 
+  // UseEffect for setting query parameters for template and cvType
   useEffect(() => {
     const templateFromQuery = searchParams.get("template") || "TemplateOne";
     const typeFromQuery = searchParams.get("type") || "General";
@@ -38,6 +39,7 @@ export default function DownloadCV() {
     setCvType(typeFromQuery);
   }, [searchParams]);
 
+  // Define templates based on cvType
   const techTemplates = [
     "TemplateOne",
     "TemplateTwo",
@@ -57,6 +59,7 @@ export default function DownloadCV() {
 
   const templateOptions = cvType === "Tech" ? techTemplates : generalTemplates;
 
+  // Load the html2pdf.js library
   const loadPdfLibrary = () => {
     return new Promise((resolve, reject) => {
       if (typeof window.html2pdf !== "undefined") {
@@ -80,6 +83,7 @@ export default function DownloadCV() {
     });
   }, []);
 
+  // Fetch CV data based on the user session
   useEffect(() => {
     const fetchCV = async () => {
       if (!session?.user?.email) return;
@@ -92,7 +96,7 @@ export default function DownloadCV() {
         const res = await fetch(apiUrl);
         const data = await res.json();
 
-        if (!res.ok) {
+        if (!res.ok || !data) {
           toast.error(data.message || "Failed to fetch CV data");
           return;
         }
@@ -110,6 +114,7 @@ export default function DownloadCV() {
     }
   }, [session, cvType]);
 
+  // Handle the download as PDF functionality
   const handleDownload = () => {
     const element = document.getElementById("cv-preview");
     if (!element) {
@@ -151,6 +156,7 @@ export default function DownloadCV() {
     }
   };
 
+  // Render the selected template preview
   const renderPreview = () => {
     if (!cvData) {
       return (
