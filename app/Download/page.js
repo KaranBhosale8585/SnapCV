@@ -59,7 +59,7 @@ export default function DownloadCV() {
 
   const templateOptions = cvType === "Tech" ? techTemplates : generalTemplates;
 
-  // Load the html2pdf.js library
+  // Dynamically load html2pdf.js only on the client-side
   const loadPdfLibrary = () => {
     return new Promise((resolve, reject) => {
       if (typeof window.html2pdf !== "undefined") {
