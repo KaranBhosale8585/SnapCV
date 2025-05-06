@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { ToastContainer, toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -21,7 +23,6 @@ import TechTemplateSix from "@/components/TechCvTemplates/TemplateSix";
 import TechTemplateSeven from "@/components/TechCvTemplates/TemplateSeven";
 
 export default function DownloadCV() {
-   const router = useRouter();
   const { data: session } = useSession();
   const [cvData, setCvData] = useState(null);
   const [cvType, setCvType] = useState("General");
