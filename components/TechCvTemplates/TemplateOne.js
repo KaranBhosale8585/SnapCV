@@ -14,7 +14,7 @@ const TemplateOne = ({ data }) => {
           <div className="mt-2 text-sm text-gray-600 space-y-1">
             {data.phone && <p>📞 {data.phone}</p>}
             {data.email && <p>📧 {data.email}</p>}
-            {data.twitter && <p>🐦 {data.twitter}</p>}
+            {data.github && <p>🐦 {data.github}</p>}
             {data.linkedin && <p>💼 {data.linkedin}</p>}
           </div>
         </div>
@@ -124,7 +124,7 @@ TemplateOne.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",

@@ -15,7 +15,7 @@ const TemplateThree = ({ data }) => {
           <div className="mt-4 space-y-1 text-sm">
             <p>📞 {data.phone}</p>
             <p>📧 {data.email}</p>
-            {data.twitter && <p>🐦 {data.twitter}</p>}
+            {data.github && <p>🐦 {data.github}</p>}
             {data.linkedin && <p>💼 {data.linkedin}</p>}
           </div>
         </div>
@@ -105,7 +105,7 @@ TemplateThree.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",

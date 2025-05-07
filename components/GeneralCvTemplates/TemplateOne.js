@@ -25,7 +25,7 @@ const TemplateOne = ({ data }) => {
         style={{ width: "794px" }} // A4 width
       >
         {/* Left Side - Contact & Skills */}
-        <div className="md:border-r md:pr-6 space-y-6">
+        <div className="md:border-r w-62 md:pr-6 space-y-6">
           {/* Profile */}
           <div>
             <h1 className="text-3xl font-extrabold text-blue-700 mb-1">
@@ -104,7 +104,7 @@ const TemplateOne = ({ data }) => {
         </div>
 
         {/* Right Side - Objective, Experience, Education, Additional Info */}
-        <div className="md:col-span-2 space-y-8">
+        <div className="md:col-span-2 ml-7 space-y-8">
           {/* Objective */}
           {data.objective && (
             <div>

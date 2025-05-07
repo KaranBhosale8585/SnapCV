@@ -93,6 +93,7 @@ export default function DownloadCV() {
       try {
         const res = await fetch(apiUrl);
         const data = await res.json();
+        console.log(data)
 
         if (!res.ok || !data) {
           toast.error(data.message || "Failed to fetch CV data");

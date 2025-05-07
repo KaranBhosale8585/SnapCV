@@ -10,6 +10,12 @@ const TemplateFive = ({ data }) => {
         <div className="bg-gray-800 text-white text-center py-10 px-6">
           <h1 className="text-5xl font-bold">{data.name}</h1>
           <h2 className="text-2xl mt-2 italic">{data.title}</h2>
+          <div className="mt-4 space-y-2 text-sm">
+            <p>📞 {data.phone}</p>
+            <p>📧 {data.email}</p>
+            {data.github && <p>🐦 {data.github}</p>}
+            {data.linkedin && <p>💼 {data.linkedin}</p>}
+          </div>
         </div>
 
         {/* Main Content Body */}
@@ -83,7 +89,7 @@ TemplateFive.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",

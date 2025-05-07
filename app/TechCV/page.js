@@ -50,7 +50,7 @@ export default function SelectTemplateTech() {
     <main className="flex flex-col items-center p-6 sm:p-10">
       <h1 className="text-3xl font-semibold mb-8 flex items-center gap-3">
         <LayoutTemplate className="text-blue-600" />
-        Select Your Template
+        Choose a Tech CV Template
       </h1>
 
       {templateList.map(({ id, Component }) => (

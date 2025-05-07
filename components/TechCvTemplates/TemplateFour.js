@@ -13,7 +13,7 @@ const TemplateFour = ({ data }) => {
           <div className="mt-4 space-y-2 text-sm">
             <p>📞 {data.phone}</p>
             <p>📧 {data.email}</p>
-            {data.twitter && <p>🐦 {data.twitter}</p>}
+            {data.github && <p>🐦 {data.github}</p>}
             {data.linkedin && <p>💼 {data.linkedin}</p>}
           </div>
         </div>
@@ -105,7 +105,7 @@ TemplateFour.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",

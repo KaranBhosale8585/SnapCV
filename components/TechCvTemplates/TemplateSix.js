@@ -15,7 +15,7 @@ const TemplateSix = ({ data }) => {
         {/* Main Content Body */}
         <div className="flex space-x-12 p-8">
           {/* Left Column (Contact) */}
-          <div className="w-70 bg-gray-200 p-6  rounded-lg shadow-sm">
+          <div className="w-77 bg-gray-200 p-5  rounded-lg shadow-sm">
             <h3 className="text-xl font-semibold text-center mb-4">Contact</h3>
             <div className="space-y-4">
               <p>
@@ -24,9 +24,9 @@ const TemplateSix = ({ data }) => {
               <p>
                 <span className="font-bold">📧</span> {data.email}
               </p>
-              {data.twitter && (
+              {data.github && (
                 <p>
-                  <span className="font-bold">🐦</span> {data.twitter}
+                  <span className="font-bold">🐦</span> {data.github}
                 </p>
               )}
               {data.linkedin && (
@@ -121,7 +121,7 @@ TemplateSix.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",

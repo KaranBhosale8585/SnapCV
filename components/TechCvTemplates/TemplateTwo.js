@@ -18,7 +18,7 @@ const TemplateTwo = ({ data }) => {
           <div className="text-sm space-y-1 text-gray-500 mb-8">
             <p>📞 {data.phone}</p>
             <p>📧 {data.email}</p>
-            {data.twitter && <p>🐦 {data.twitter}</p>}
+            {data.github && <p>🐦 {data.github}</p>}
             {data.linkedin && <p>💼 {data.linkedin}</p>}
           </div>
 
@@ -109,7 +109,7 @@ TemplateTwo.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",

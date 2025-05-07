@@ -7,14 +7,14 @@ const TemplateSeven = ({ data }) => {
     <div className="min-h-screen text-black bg-gray-100 py-12 px-8 flex justify-center">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex">
         {/* Sidebar */}
-        <div className="w-1/3 bg-teal-600 text-white p-8 flex flex-col justify-between">
+        <div className="w-77 bg-teal-600 text-white p-5 flex flex-col justify-between">
           <div>
             <h1 className="text-4xl font-bold">{data.name}</h1>
             <h2 className="text-xl mt-2 italic">{data.title}</h2>
             <div className="mt-6 space-y-2">
               <p>📞 {data.phone}</p>
               <p>📧 {data.email}</p>
-              {data.twitter && <p>🐦 {data.twitter}</p>}
+              {data.github && <p>🐦 {data.github}</p>}
               {data.linkedin && <p>💼 {data.linkedin}</p>}
             </div>
           </div>
@@ -97,7 +97,7 @@ TemplateSeven.defaultProps = {
     title: "",
     phone: "",
     email: "",
-    twitter: "",
+    github: "",
     linkedin: "",
     skills: {
       frontend: "",
